@@ -4,10 +4,9 @@ import {isEqual} from 'lodash/lang';
 import NowPlaying from './NowPlaying';
 import PlayButton from './PlayButton';
 import KexpShow from './KexpShow';
-import SaveToSpotify from './SaveToSpotify';
 
 import * as spotifyAuth from '../lib/spotifyAuth';
-import * as spotifyApi from '../lib/spotify';
+import * as spotifyApi from '../lib/spotifyApi';
 import * as kexpApi from '../lib/kexpApi';
 
 const STREAM_URL = 'http://live-mp3-128.kexp.org:8000/kexp128.mp3';
@@ -127,11 +126,11 @@ class Player extends Component {
         <KexpShow show={this.state.currentShow}/>
         <PlayButton isPlaying={this.state.isPlaying} onPlay={this.handlePlayClick} />
 
-        <NowPlaying {...this.state.nowPlaying} />
-        <SaveToSpotify
+        <NowPlaying
           nowPlaying={this.state.nowPlaying}
           validSpotifyToken={this.state.validSpotifyToken}
-          onSave={this.saveToSpotify} />
+          onSaveTrack={this.saveToSpotify}
+        />
       </div>
     );
   }
