@@ -38,3 +38,21 @@ export const nowPlaying = () => {
       return nowPlaying;
     });
 };
+
+export const currentShow = () => {
+  // https://legacy-api.kexp.org/show/?limit=1&airdate_before=2017-06-06T19:24:00Z
+  const date = moment(new Date()).utc().format('YYYY-MM-DDTHH:mm:00').toString() + 'Z';
+
+  console.log('Load show from KEXP api');
+  return fetch(`https://legacy-api.kexp.org/show/?limit=1&airdate_before=${date}`)
+    .then(res => res.json())
+    .then(json => {
+      const show = {};
+      if (json.results.length) {
+        const result = json.results[0];
+        show.name = result.program.name;
+        show.host = result.hosts[0].name;
+      }
+      return show;
+    });
+};

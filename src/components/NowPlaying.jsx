@@ -1,6 +1,6 @@
 import React from 'react';
 
-const NowPlaying = ({playType, artist, release, releaseYear, comment, track}) => (
+const NowPlaying = ({playType, artist, release, releaseYear, comment, track, albumImage, spotifyTrackId, spotifyAlbumId, spotifyUrl}) => (
   <section>
     <h3>Now Playing</h3>
     {playType === 'Air break' ? 
@@ -10,6 +10,7 @@ const NowPlaying = ({playType, artist, release, releaseYear, comment, track}) =>
         <div>{artist}</div>
         <div>{release}</div>
         <div>{releaseYear}</div>
+        {albumImage && <div><img src={albumImage} alt={release} /></div>}
         {comment && <p>{comment}</p>}
       </div>)
     }

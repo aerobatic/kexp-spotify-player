@@ -27,9 +27,37 @@ export const searchForTrack = ({artist, track}) => {
         artistId: track.artists[0].id,
         spotifyUri: track.uri,
         albumName: track.album.name,
-        albumImage: track.album.images[0]
+        albumImage: track.album.images[0].url
       };
     }
     return null;
   });
 }
+
+export const saveTrack = (trackId) => {
+  const accessToken = getAccessToken();
+  
+  return fetch(`https://api.spotify.com/v1/me/tracks?ids=${trackId}`, {
+    method: 'PUT',
+    mode: 'cors',
+    headers: {
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${accessToken}`
+    }
+  });
+};
+
+export const isTrackSaved = (trackId) => {
+  const accessToken = getAccessToken();
+  
+  return fetch(`https://api.spotify.com/v1/me/tracks/contains?ids=${trackId}`, {
+    method: 'GET',
+    mode: 'cors',
+    headers: {
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${accessToken}`
+    }
+  })
+  .then(res => res.json())
+  .then(json => json[0]);
+};

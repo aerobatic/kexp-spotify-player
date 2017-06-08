@@ -58,7 +58,11 @@ export const getAccessToken = () => {
 };
 
 export const validAccessToken = () => {
-  return getAccessToken() !== null;
+  if (getAccessToken() !== null) {
+    return true;
+  }
+  localStorage.removeItem(ACCESS_TOKEN_KEY);
+  return false;
 };
 
 // Navigate the browser to the Spotify auth page
