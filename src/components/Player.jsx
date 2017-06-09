@@ -2,14 +2,14 @@ import React, { Component } from 'react';
 import { Howl } from 'howler';
 import {isEqual} from 'lodash/lang';
 import NowPlaying from './NowPlaying';
-import PlayButton from './PlayButton';
-import KexpShow from './KexpShow';
+import PlayerControls from './PlayerControls';
+import PlayerHeader from './PlayerHeader';
 
 import * as spotifyAuth from '../lib/spotifyAuth';
 import * as spotifyApi from '../lib/spotifyApi';
 import * as kexpApi from '../lib/kexpApi';
 
-const STREAM_URL = 'http://live-mp3-128.kexp.org:8000/kexp128.mp3';
+const STREAM_URL = 'http://live-mp3-128.kexp.org/kexp128.mp3';
 
 class Player extends Component {  
   constructor() {
@@ -34,7 +34,13 @@ class Player extends Component {
 
   handlePlayClick = () => {
     this.setState({isPlaying: true});
+    this.liveStream.mute(false);
     this.liveStream.play();
+  }
+
+  handlePauseClick = () => {
+    this.setState({isPlaying: false});
+    this.liveStream.mute(true);
   }
 
   componentDidMount() {
@@ -109,8 +115,8 @@ class Player extends Component {
       });
   }
 
-  saveToSpotify = (spotifyTrackId) => {
-    spotifyApi.saveTrack(spotifyTrackId)
+  saveToSpotify = () => {
+    spotifyApi.saveTrack(this.state.nowPlaying.spotifyTrackId)
       .then(() => {
         this.setState({nowPlaying: {...this.state.nowPlaying, isSavedToSpotify: true}});
       })
@@ -122,10 +128,12 @@ class Player extends Component {
   render() {
     return (
       <div className="App">
-        <h2>KEXP + Spotify</h2>
-        <KexpShow show={this.state.currentShow}/>
-        <PlayButton isPlaying={this.state.isPlaying} onPlay={this.handlePlayClick} />
-
+        <PlayerHeader currentShow={this.state.currentShow} />
+        <PlayerControls
+          isPlaying={this.state.isPlaying}
+          onPlay={this.handlePlayClick}
+          onPause={this.handlePauseClick} />
+        
         <NowPlaying
           nowPlaying={this.state.nowPlaying}
           validSpotifyToken={this.state.validSpotifyToken}

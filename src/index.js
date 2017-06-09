@@ -2,7 +2,6 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './App';
 import registerServiceWorker from './registerServiceWorker';
-import './index.css';
 import querystring from 'query-string';
 import SpotifyAuthError from './components/SpotifyAuthError';
 import * as spotifyAuth from './lib/spotifyAuth';

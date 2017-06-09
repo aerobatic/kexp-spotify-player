@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import glamorous from 'glamorous';
-import vinylRecord from '../vinyl-record.svg';
+import vinylRecord from '../icons/vinyl-record.svg';
 
 import SaveToSpotify from './SaveToSpotify';
 
@@ -15,21 +15,26 @@ const Wrapper = glamorous.div({
     }
   },
   '& .details': {
-    paddingLeft: 20,
+    paddingLeft: 30,
     flexGrow: 1,
-    
+    display: 'flex',
+    flexDirection: 'column',
+    justifyContent: 'space-between',
+    paddingBottom: 10,
     '& .label': {
-      fontSize: 12
+      fontSize: 12,
+      color: '#a0a0a0',
+      marginBottom: 5
     },
     '& .value': {
       fontSize: 22,
-      marginBottom: 15
+      marginBottom: 15,
+      fontWeight: 300
     },
     '& .airbreak': {
       display: 'flex',
       height: '100%',
       flexDirection: 'column',
-      // alignItems: 'center',
       justifyContent: 'center',
       fontSize: 28
     }
@@ -47,22 +52,37 @@ class NowPlaying extends Component {
     );
   }
 
+  renderSpotifyAction() {
+    const {nowPlaying, validSpotifyToken, onSaveTrack} = this.props;
+
+    if (!validSpotifyToken) return null;
+
+    if (nowPlaying.spotifyTrackId) {
+      return <SaveToSpotify nowPlaying={nowPlaying} onSave={onSaveTrack} />;
+    } else {
+      return <div>No Spotify data for track</div>
+    }
+  }
+
   renderTrackDetails() {
     const {nowPlaying} = this.props;
 
     return (
       <div className="details">
-        <div className="label">Artist</div>
-        <div className="value">{nowPlaying.artist}</div>
-        <div className="label">Track</div>
-        <div className="value">{nowPlaying.track}</div>
-        <div className="label">Album</div>
-        <div className="value">{nowPlaying.release} - {nowPlaying.releaseYear}</div>
-
-        <SaveToSpotify
-          nowPlaying={nowPlaying}
-          validSpotifyToken={this.props.validSpotifyToken}
-          onSave={this.props.onSaveTrack} />
+        <div>
+          <div className="label">Artist</div>
+          <div className="value">{nowPlaying.artist}</div>
+          <div className="label">Track</div>
+          <div className="value">{nowPlaying.track}</div>
+          <div className="label">Album</div>
+          <div className="value">
+            {nowPlaying.release}
+            {nowPlaying.releaseYear && ` - ${nowPlaying.releaseYear}`}
+          </div>
+        </div>
+        <div>
+          {this.renderSpotifyAction()}
+        </div>
       </div>
     );
   }
@@ -94,7 +114,8 @@ NowPlaying.propTypes = {
     releaseYear: PropTypes.number,
     albumImage: PropTypes.string,
     playType: PropTypes.string,
-    comment: PropTypes.string
+    comment: PropTypes.string,
+    isSavedToSpotify: PropTypes.bool
   }),
   onSaveTrack: PropTypes.func,
   validSpotifyToken: PropTypes.bool

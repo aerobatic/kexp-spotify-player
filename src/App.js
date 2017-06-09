@@ -9,7 +9,7 @@ import './App.css';
 const AppShell = glamorous.section({
   width: 700,
   maxWidth: '100%',
-  margin: '0 auto'
+  margin: '40px auto'
 });
 
 class App extends Component {  
