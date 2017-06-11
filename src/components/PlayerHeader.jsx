@@ -1,23 +1,28 @@
 import React from 'react';
 import glamorous from 'glamorous';
+import {colors} from '../lib/common';
 
 const Wrapper = glamorous.div({
-  padding: '15px 0',
-  display: 'flex',
-  justifyContent: 'space-between',
-  alignItems: 'center',
+  paddingTop: 5,
+  paddingBottom: 15,
   '& h2': {
     margin: 0
   },
   '& .onnow': {
-    color: '#feac31',
+    color: colors.orange,
     fontWeight: 'bold',
     display: 'inline-block',
+    marginTop: 8,
     marginRight: 8,
     fontSize: 12
   },
   '& .host': {
-    fontSize: 12
+    fontSize: 12,
+    color: colors.white,
+    textDecoration: 'none'
+  },
+  '& .host:hover': {
+    textDecoration: 'underline'
   }
 });
 
@@ -26,7 +31,8 @@ const PlayerHeader = ({currentShow}) => (
     <h2>KEXP + Spotify</h2>
     {currentShow && (
       <div>
-        <span className="onnow">ON NOW:</span> <span className="host">{currentShow.name} with {currentShow.host}</span>
+        <span className="onnow">ON NOW:</span>
+        <a className="host" href="http://www.kexp.org" target="_blank" rel="noopener noreferrer">{currentShow.name} with {currentShow.host}</a>
       </div>  
     )}
   </Wrapper>

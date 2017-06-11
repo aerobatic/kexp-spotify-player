@@ -1,12 +1,24 @@
 import React from 'react';
 import glamorous from 'glamorous';
+import EqualizerBars from './EqualizerBars';
 
 const Wrapper = glamorous.div({
   marginBottom: 20,
+  padding: '0 15px',
   backgroundColor: '#282828',
   display: 'flex',
-  alignContent: 'center',
-  justifyContent: 'center',
+  alignItems: 'center',
+  '& > *': {
+    width: '100%',
+    flexGrow: '1'
+  },
+  '& > :nth-child(2)': {
+    textAlign: 'center'
+  },
+  '& > :nth-child(3)': {
+    display: 'flex',
+    flexDirection: 'row-reverse'
+  },
   '& button': {
     display: 'inline-block',
     border: 'none',
@@ -26,7 +38,13 @@ const Wrapper = glamorous.div({
 
 const PlayerControls = ({isPlaying, onPlay, onPause}) => (
   <Wrapper>
-    <button onClick={isPlaying ? onPause : onPlay}>{isPlaying ? <PauseIcon /> : <PlayIcon />}</button>
+    <div />
+    <div>
+      <button onClick={isPlaying ? onPause : onPlay}>{isPlaying ? <PauseIcon /> : <PlayIcon />}</button>
+    </div>
+    <div className="right">
+      {isPlaying && <EqualizerBars />}
+    </div>
   </Wrapper>
 );
 

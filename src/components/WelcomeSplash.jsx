@@ -2,31 +2,62 @@ import React from 'react';
 import glamorous from 'glamorous';
 import * as spotifyAuth from '../lib/spotifyAuth';
 import spotifyIcon from '../icons/spotify.svg';
+import {colors} from '../lib/common';
+import AerobaticInfo from './AerobaticInfo';
 
 const Container = glamorous.section({
-  display: 'flex',
-  '& .kexp-logo': {
-    width: 300,
-    marginRight: 30
+  textAlign: 'center',
+  '& .header': {
+    padding: '5px 10px',
+    color: '#000',
+    fontWeight: 600,
+    backgroundColor: colors.orange,
   },
-  '& ul': {
-    fontWeight: 300,
-    '& li': {
-      marginTop: 10,
-      lineHeight: '1.2em'
+  '& .hero': {
+    padding: '30px 10px',
+    textAlign: 'center',
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+    justifyContent: 'center',
+    backgroundImage: 'url(/wallpaper.jpg)',
+    backgroundSize: 'cover',
+    marginBottom: 15,
+    '& img': {
+      width: 742,
+      maxWidth: '80%'
+    },
+    '& h3': {
+      fontWeight: 300,
+      fontSize: 32,
+      marginBottom: 0
     }
   },
-  '& h3': {
-    letterSpacing: '.1em'
+  '& .features': {
+    display: 'flex',
+    padding: 0,
+    width: '100%',
+    justifyContent: 'space-between',
+    '& div': {
+      width: '48%',
+      backgroundColor: colors.midGray,
+      marginBottom: 10,
+      '& span': {
+        display: 'inline-block',
+        padding: 15,
+        lineHeight: '23px'
+      }
+    }
   },
   '& button.authorize': {
     cursor: 'pointer',
     width: '100%',
+    maxWidth: 400,
     textAlign: 'center',
-    display: 'block',
+    display: 'inline-block',
     fontSize: 25,
     padding: '5px 12px',
-    backgroundColor: '#09943a',
+    backgroundColor: colors.green,
     border: 'none',
     borderRadius: 10,
     color: '#000',
@@ -41,30 +72,45 @@ const Container = glamorous.section({
     }
   },
   '& button.authorize:hover': {
-    backgroundColor: '#1db954'
+    backgroundColor: colors.lightGreen
+  },
+  '@media(max-width: 600px)': {
+    '& .features': {
+      display: 'block',
+      '& div': {
+        width: '100%'
+      }
+    }
   }
 });
 
 const WelcomeSplash = () => (
   <Container>
-    <div>
-      <img className="kexp-logo" src="/kexp-logo.jpg" />
+    <div className="header">
+      KEXP + Spotify Player
     </div>
-    <div>
-      <h3>KEXP + SPOTIFY LIVE STREAM</h3>
-      <p>The two best places to experience music on the internet are even better together!</p>
-      <ul>
-        <li>Hear a song you like on KEXP and save it to your Spotify music with a single click.</li>
-        <li>Enhance the KEXP live stream with additional track info from Spotify including album art, artist info, and related artists.</li>
-      </ul>
+    <div className="hero">
+      <img src="/hero.png" alt="KEXP + Spotify" />
+      <h3>The two best sources of music on the internet are even better together</h3>
+    </div>
+    <div className="main">
+      <div className="features">
+        <div>
+          <span>Hear a song you like on KEXP and save it to your Spotify music with a single click</span>
+        </div>
+        <div>
+          <span>Enhance the KEXP live stream with additional track info from Spotify</span>
+        </div>
+      </div>
       <p>Click below to authorize the player to connect to your Spotify account and start enjoying the music.</p>
       <button className="authorize" onClick={() => spotifyAuth.navigateToAuth()}>
         <div>
-          <img src={spotifyIcon}/>
+          <img src={spotifyIcon} alt="Spotify" />
           <span>Connect with Spotify</span>
         </div>
       </button>
     </div>
+    <AerobaticInfo />
   </Container>
 );
 

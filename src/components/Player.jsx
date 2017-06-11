@@ -4,6 +4,8 @@ import {isEqual} from 'lodash/lang';
 import NowPlaying from './NowPlaying';
 import PlayerControls from './PlayerControls';
 import PlayerHeader from './PlayerHeader';
+import SpotifySessionExpired from './SpotifySessionExpired';
+import AerobaticInfo from './AerobaticInfo';
 
 import * as spotifyAuth from '../lib/spotifyAuth';
 import * as spotifyApi from '../lib/spotifyApi';
@@ -50,7 +52,7 @@ class Player extends Component {
     ])
     .then(() => {
       setInterval(this.loadNowPlaying, 30000);
-      setInterval(this.loadCurrentShow, 60000);
+      setInterval(this.loadCurrentShow, 120000);
     });
   }
 
@@ -134,11 +136,14 @@ class Player extends Component {
           onPlay={this.handlePlayClick}
           onPause={this.handlePauseClick} />
         
+        {!this.state.validSpotifyToken && <SpotifySessionExpired />}
+
         <NowPlaying
           nowPlaying={this.state.nowPlaying}
           validSpotifyToken={this.state.validSpotifyToken}
           onSaveTrack={this.saveToSpotify}
         />
+        {this.state.nowPlaying && <AerobaticInfo />}
       </div>
     );
   }
