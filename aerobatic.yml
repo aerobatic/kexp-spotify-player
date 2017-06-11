@@ -2,6 +2,8 @@ id: d8f32dd6-c8e1-4a90-92ee-857e42a2299c
 deploy:
   ignore: []
   directory: build
+  build:
+    - yarn build
 plugins:
   - name: webpage
     options:

@@ -27,6 +27,7 @@ const Wrapper = glamorous.div({
       marginRight: 10
     },
     '& > *': {
+      textDecoration: 'none',
       display: 'inline-block',
       height: 34,
       width: 110,
@@ -97,7 +98,7 @@ const renderActionButtons = (nowPlaying, onSave) => {
 
   return (
     <div className="buttons">
-      <a className="open" href={nowPlaying.spotifyUri}>
+      <a className="open" href={nowPlaying.spotifyUrl}>
         <div>
           <OpenExternalIcon />
           <span>Open</span>
