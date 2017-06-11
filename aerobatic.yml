@@ -5,6 +5,10 @@ deploy:
   build:
     - yarn build
 plugins:
+  - name: http-headers
+    path: /manifest.json
+    options:
+      "Content-Type": "application/manifest+json"
   - name: webpage
     options:
       pushState: true
