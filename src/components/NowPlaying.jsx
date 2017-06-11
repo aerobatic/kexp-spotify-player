@@ -9,7 +9,6 @@ const Wrapper = glamorous.div({
   display: 'flex',
   flexDirection: 'row-reverse',
   justifyContent: 'space-between',
-  marginBottom: 15,
   width: '100%',
   '& .image': {
     width: '50%',
@@ -22,7 +21,6 @@ const Wrapper = glamorous.div({
     width: '45%',
     flexDirection: 'column',
     justifyContent: 'space-between',
-    paddingBottom: 20,
     '& .label': {
       fontSize: 12,
       color: colors.lightGray,
@@ -44,6 +42,7 @@ const Wrapper = glamorous.div({
   '@media(max-width: 600px)': {
     display: 'block',
     '& .details': {
+      marginBottom: 20,
       width: '100%',
       '& .label': {
         margin: '0 15px 3px 15px'
