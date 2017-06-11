@@ -45,22 +45,19 @@ const Wrapper = glamorous.div({
     display: 'block',
     '& .details': {
       width: '100%',
-      margin: '0 15px',
       '& .label': {
-        marginBottom: 3
+        margin: '0 15px 3px 15px'
       },
       '& .value': {
         fontSize: 18,
-        marginBottom: 10,
+        margin: '0 15px 10px 15px',
         fontWeight: 300
       },
     },
     '& .image': {
-      width: '100%',
+      display: 'block',
       textAlign: 'center',
-      '& > img': {
-        maxWidth: '90%'
-      }
+      width: '100%'
     },
     '& .airbreak': {
       textAlign: 'center',

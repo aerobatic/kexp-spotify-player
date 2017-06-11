@@ -39,7 +39,8 @@ const Container = glamorous.section({
     width: '100%',
     justifyContent: 'space-between',
     '& div': {
-      width: '48%',
+      textAlign: 'left',
+      width: '31%',
       backgroundColor: colors.midGray,
       marginBottom: 10,
       '& span': {
@@ -96,10 +97,13 @@ const WelcomeSplash = () => (
     <div className="main">
       <div className="features">
         <div>
-          <span>Hear a song you like on KEXP and save it to your Spotify music with a single click</span>
+          <span>Save current playing song to your Spotify music with a single click</span>
         </div>
         <div>
           <span>Enhance the KEXP live stream with additional track info from Spotify</span>
+        </div>
+        <div>
+          <span>Built to be mobile friendly so you can even listen on the go</span>
         </div>
       </div>
       <p>Click below to authorize the player to connect to your Spotify account and start enjoying the music.</p>
