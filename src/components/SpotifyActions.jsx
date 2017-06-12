@@ -21,17 +21,17 @@ const Wrapper = glamorous.div({
     color: colors.white
   },
   '& .buttons': {
+    marginTop: 15,
     display: 'flex',
     alignItems: 'center',
     '& .open': {
       marginRight: 10
     },
-    '& > *': {
+    '& > a, button': {
       textDecoration: 'none',
       display: 'inline-block',
       height: 34,
       width: 110,
-      marginTop: 15,
       color: '#fff',
       cursor: 'pointer',
       fontSize: 12,
