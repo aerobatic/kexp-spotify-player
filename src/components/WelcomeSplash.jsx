@@ -4,6 +4,7 @@ import * as spotifyAuth from '../lib/spotifyAuth';
 import spotifyIcon from '../icons/spotify.svg';
 import {colors} from '../lib/common';
 import AerobaticInfo from './AerobaticInfo';
+import OpenSourceLink from './OpenSourceLink';
 
 const Container = glamorous.section({
   textAlign: 'center',
@@ -115,6 +116,7 @@ const WelcomeSplash = () => (
       </button>
     </div>
     <AerobaticInfo />
+    <OpenSourceLink />
   </Container>
 );
 

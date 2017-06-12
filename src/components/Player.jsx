@@ -6,6 +6,7 @@ import PlayerControls from './PlayerControls';
 import PlayerHeader from './PlayerHeader';
 import SpotifySessionExpired from './SpotifySessionExpired';
 import AerobaticInfo from './AerobaticInfo';
+import OpenSourceLink from './OpenSourceLink';
 
 import * as spotifyAuth from '../lib/spotifyAuth';
 import * as spotifyApi from '../lib/spotifyApi';
@@ -144,6 +145,7 @@ class Player extends Component {
           onSaveTrack={this.saveToSpotify}
         />
         {this.state.nowPlaying && <AerobaticInfo />}
+        {this.state.nowPlaying && <OpenSourceLink />}
       </div>
     );
   }
