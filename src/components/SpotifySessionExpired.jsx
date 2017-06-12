@@ -9,9 +9,11 @@ const Wrapper = glamorous.div({
   alignItems: 'top',
   backgroundColor: '#282828',
   marginBottom: 15,
-'& svg': {
+  '& svg': {
     fill: '#b71c1c',
-    marginRight: 8
+    marginRight: 8,
+    width: 40,
+    height: 40
   },
   '& p': {
     margin: 0
@@ -45,7 +47,7 @@ const SpotifySessionExpired = () => {
 export default SpotifySessionExpired;
 
 const ErrorIcon = () => (
-  <svg fill="#000000" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+  <svg fill="#000000" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
       <path d="M0 0h24v24H0z" fill="none"/>
       <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z"/>
   </svg>

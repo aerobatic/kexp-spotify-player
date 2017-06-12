@@ -31,6 +31,9 @@ const Wrapper = glamorous.div({
       marginBottom: 15,
       fontWeight: 300
     },
+    '& .comment': {
+      fontSize: 15
+    },
     '& .airbreak': {
       display: 'flex',
       height: '100%',
@@ -52,6 +55,9 @@ const Wrapper = glamorous.div({
         margin: '0 15px 10px 15px',
         fontWeight: 300
       },
+      '& .comment': {
+        fontSize: 14
+      }
     },
     '& .image': {
       display: 'block',
@@ -96,6 +102,12 @@ class NowPlaying extends Component {
                 {nowPlaying.release}
                 {nowPlaying.releaseYear && ` - ${nowPlaying.releaseYear}`}
               </div>
+            </div>
+          )}
+          {nowPlaying.comment && (
+            <div>
+              <div className="label">DJ Comments</div>
+              <div className="value comment">{nowPlaying.comment}</div>
             </div>
           )}
         </div>

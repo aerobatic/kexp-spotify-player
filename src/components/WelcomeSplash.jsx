@@ -103,7 +103,7 @@ const WelcomeSplash = () => (
           <span>Enhance the KEXP live stream with additional track info from Spotify</span>
         </div>
         <div>
-          <span>Built to be mobile friendly so you can even listen on the go</span>
+          <span>Mobile friendly for listening on the go</span>
         </div>
       </div>
       <p>Click below to authorize the player to connect to your Spotify account and start enjoying the music.</p>

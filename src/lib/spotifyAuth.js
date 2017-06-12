@@ -3,7 +3,6 @@ import {isString, isNumber, isEmpty} from 'lodash/lang';
 import {random} from 'lodash/number';
 
 const SCOPES = ['user-library-read', 'user-library-modify'];
-const CLIENT_ID = '3a8b02b4544548ed98e06c56af43ae41';
 const AUTH_URL = 'https://accounts.spotify.com/authorize';
 const ACCESS_TOKEN_KEY = 'spotifyAccessToken';
 const CORRELATION_ID_KEY = 'spotifyAuthCorrelationId';
@@ -69,7 +68,7 @@ export const validAccessToken = () => {
 export const navigateToAuth = (redirectState = {}) => {
   const correlationId = random(1000, 2000);
   const query = {
-    client_id: CLIENT_ID,
+    client_id: process.env.REACT_APP_SPOTIFY_CLIENT_ID,
     response_type: 'token',
     scope: SCOPES.join(' '),
     redirect_uri: window.location.origin + '/spotify_callback',
